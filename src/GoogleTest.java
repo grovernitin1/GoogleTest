@@ -7,7 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class GoogleTest {
+public class GoogleTest{
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -21,20 +21,11 @@ public class GoogleTest {
   }
 
   @Test
-  public void testGoogle() throws Exception {
+  public void testGoogleTestJunit() throws Exception {
     driver.get(baseUrl + "/?gws_rd=ssl");
-    try {
-      assertEquals("Google", driver.getTitle());
-    } catch (Error e) {
-      verificationErrors.append(e.toString());
-    }
     driver.findElement(By.linkText("Advertising")).click();
-    try {
-      assertEquals("Google Ads", driver.getTitle());
-    } catch (Error e) {
-      verificationErrors.append(e.toString());
-    }
-    assertEquals("Advertise on Googles", driver.findElement(By.xpath("//*[@id='testimonial']/div[1]/div[2]/h1")).getText());
+    assertEquals("Google Ads", driver.getTitle());
+    assertTrue(isElementPresent(By.linkText("1 877 906-7957")));
   }
 
   @After
