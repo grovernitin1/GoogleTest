@@ -15,12 +15,17 @@
         <pathelement location="../../Selenium/selenium-server-standalone-2.45.0.jar"/>
         <pathelement location="../../junit/junit-4.12.jar"/>
         <pathelement location="../../Selenium/selenium-2.45.0/selenium-java-2.45.0.jar"/>
-        <pathelement location="../../Eclipse/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+        <pathelement location="lib/junit.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="lib">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -35,6 +40,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
+            <src path="lib"/>
             <classpath refid="GoogleTest.classpath"/>
         </javac>
     </target>
